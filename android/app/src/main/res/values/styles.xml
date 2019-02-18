@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+</resources>
+
+
+<!--<declare-styleable name="mapStyle"><attr name="layout_width"/><attr name="layout_height"/><attr name="layout_weight"/></declare-styleable>-->

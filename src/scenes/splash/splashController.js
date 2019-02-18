@@ -5,7 +5,7 @@ import { Dimensions, ToastAndroid } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 import { AdMobInterstitial } from 'react-native-admob';
 import firebase from 'react-native-firebase';
-//import services from '../../services';
+// import services from '../../services';
 
 const {width, height} = Dimensions.get('window');
 
@@ -22,11 +22,25 @@ class SplashController extends BaseScene {
       toastVisible: false,
       buttonGameOver: false,
       score: 0,
-      finalScore:0,
-      currentScore:0,
-      letsLoadAdvertisment:false,
+      finalScore: 0,
+      currentScore: 0,
+      letsLoadAdvertisment: false,
       randomValue: (Math.floor((Math.random() * (120 - 30)) + 30))
     };
+  }
+
+  levelIncrease () {
+    if (this.state.score > 10) {
+      return 4000;
+    } else if (this.state.score > 20) {
+      return 3000;
+    } else if (this.state.score > 30) {
+      return 2000;
+    } else if (this.state.score > 40) {
+      return 1000;
+    } else {
+      return 6000;
+    }
   }
 
   async initializeFirebaseApp () {
@@ -44,7 +58,7 @@ class SplashController extends BaseScene {
 
   chargeAd () {
     // Display an interstitial
-    AdMobInterstitial.setAdUnitID('ca-app-pub-7498255284251761/3925340325'); // mamarene Id
+    AdMobInterstitial.setAdUnitID('ca-app-pub-9901220615892956/3198294004'); // my timebomb Id
     AdMobInterstitial.setTestDevices(['6D1D35847F87DD467EE0D0AD2FE07E63']); // my phone Device
     AdMobInterstitial.requestAd();
   }
@@ -64,7 +78,7 @@ class SplashController extends BaseScene {
     return {topArray, leftArray};
   }
 
-  getRandomValue(){
+  getRandomValue () {
     return this.state.randomValue;
   }
 
@@ -77,10 +91,10 @@ class SplashController extends BaseScene {
         100
       );
     let bestScore = await this.storage.getAsyncStorage('bestScore');
-    if(!bestScore){
+    if (!bestScore) {
       await this.storage.setAsyncStorage('bestScore', this.state.score);
-    } else{
-      if(this.state.score > bestScore){
+    } else {
+      if (this.state.score > bestScore) {
         await this.storage.setAsyncStorage('bestScore', this.state.score);
       }
     }
@@ -89,15 +103,14 @@ class SplashController extends BaseScene {
     this.setState({
       buttonGameOver: true,
       currentScore: this.state.score,
-      letsLoadAdvertisment:false,
+      letsLoadAdvertisment: false,
       score: 0,
       finalScore
     });
-
   }
 
-  async getBestScore(){
-    //let bestScore = await this.storage.getAsyncStorage('bestScore');
+  async getBestScore () {
+    // let bestScore = await this.storage.getAsyncStorage('bestScore');
     return 1;
   }
 

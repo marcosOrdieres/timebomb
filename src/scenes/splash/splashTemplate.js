@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Dimensions, TouchableOpacity, ToastAndroid, Button, Image } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, ToastAndroid, Button, Image, Linking } from 'react-native';
 import logo from '../../images/logoMaps.png';
 import splashStyles from './splashStyles';
 import TimerCountdown from 'react-native-timer-countdown';
@@ -26,6 +26,7 @@ export default (controller) => (
               style={{ fontSize: 20 }}
           />
         :
+
             <Text style={{fontSize: 14, fontWeight: 'bold'}}>Click the Extra face in the Left</Text>
         }
         </View>
@@ -100,13 +101,16 @@ export default (controller) => (
             <Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>Try Again!</Text>
           </TouchableOpacity>
           <View style={{width: width, height: height / 4, justifyContent: 'center', alignItems: 'center'}}>
+
             <Text style={{fontSize: 20}}>Actual Score: {controller.state.currentScore}</Text>
+            <Text
+              onPress={() => { Linking.openURL('https://backpackerneeds2.blogspot.com/2019/02/privacy-policy-time-bomb.html'); }}
+              style={{fontSize: 14, paddingTop: 30, color: 'blue', underlineColorAndroid: 'blue', fontWeight: 'bold'}}>privacy policy</Text>
           </View>
           <View style={{width: width, height: height / 4, justifyContent: 'center', alignItems: 'center'}}>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Best Score: {controller.state.finalScore}</Text>
           </View>
         </View>
-
       :
       null
       }
